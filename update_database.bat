@@ -1,0 +1,1 @@
+dotnet ef database update --project CustomerServer/Infrastructure/Persistence --startup-project CustomerServer/Server

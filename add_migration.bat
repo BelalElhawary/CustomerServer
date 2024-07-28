@@ -1,0 +1,1 @@
+dotnet ef migrations add %1 --project CustomerServer/Infrastructure/Persistence --startup-project CustomerServer/Server
