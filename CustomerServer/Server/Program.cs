@@ -7,7 +7,20 @@ using CustomerServer.Infrastructure.Presentation;
 using CustomerServer.Middleware;
 using Microsoft.EntityFrameworkCore;
 
+var AllowedOrigins = "_AllowedOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowedOrigins,
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 
 // Add services to the container.
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
@@ -34,6 +47,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(AllowedOrigins);
 
 // app.UseMiddleware<ExceptionHandlingMiddleware>();
 
